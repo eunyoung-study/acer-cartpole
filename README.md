@@ -84,13 +84,13 @@ class ActorCritic(nn.Module):
         pi = F.softmax(logits, dim=-1)
         return pi, v.squeeze(-1)
 
-    @torch.no_grad()
-    def act(self, s):
-        s_t = torch.as_tensor(s, dtype=torch.float32, device=DEVICE)
-        pi, v = self.forward(s_t)
-        dist = Categorical(pi)
-        a = dist.sample()
-        return a.item(), pi.cpu().numpy(), float(v.item())
+      def act(self, s: np.ndarray):
+        with torch.no_grad():
+            s_t = torch.as_tensor(s, dtype=torch.float32, device=DEVICE)
+            pi, v = self.forward(s_t)
+            dist = Categorical(pi)
+            a = dist.sample()
+            return a.item(), pi.cpu().numpy(), float(v.item())
 ```
 
 - CartPole 상태(4차원)를 입력으로 받아:
