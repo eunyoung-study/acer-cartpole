@@ -90,10 +90,10 @@ class ActorCritic(nn.Module):
 ```
 
 - CartPole 상태(4차원)를 입력으로 받아:
-  - 정책 \(\pi(a|s)\) (두 행동에 대한 확률)
-  - 상태 가치 \(V(s)\)
+  - 정책 pi(a|s) (두 행동에 대한 확률)
+  - 상태 가치 V(s)
 - `act()`는 환경 상호작용 시 사용되며,  
-  **behavior 정책 확률 μ(a|s)** 를 Replay Buffer에 함께 저장합니다.
+  behavior 정책 확률 mu(a|s)를 Replay Buffer에 함께 저장합니다.
 
 ---
 
@@ -109,11 +109,11 @@ class ReplayBuffer:
 ```
 
 - `(s, a, r, done, s_next, behavior_prob)` 저장
-  - `behavior_prob` = 데이터를 수집할 때 사용했던 정책 확률 μ(a|s)
+  - `behavior_prob` = 데이터를 수집할 때 사용했던 정책 확률 mu(a|s)
 - off-policy 업데이트 시:
-  - 현재 정책 π(a|s)를 다시 계산하고
-  - **중요도 비율** \(w = \frac{\pi(a|s)}{\mu(a|s)}\)를 사용
-  - 너무 큰 w는 `torch.clamp(w, max=IS_CLIP)`으로 클리핑
+  - 현재 정책 pi(a|s)를 다시 계산하고
+  - 중요도 비율 `w = pi(a|s) / mu(a|s)` 를 사용
+  - 너무 큰 w는 `torch.clamp(w, max=IS_CLIP)` 으로 클리핑
 
 ---
 
