@@ -36,10 +36,6 @@ pip install numpy
     - `acer_on_policy_update` – A2C 스타일 on-policy 업데이트
     - `acer_off_policy_update` – Replay + Importance Sampling 기반 off-policy 업데이트
     - `train_acer()` – CartPole 에피소드 반복 학습 루프
-
-- `ACER_CartPole_블로그.md`  
-  - ACER 개념 및 CartPole 코드 설명용 블로그 글 초안 (한국어)
-
 ---
 
 ## 3. 실행 방법
